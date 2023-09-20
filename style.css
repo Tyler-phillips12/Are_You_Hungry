@@ -4,8 +4,8 @@ body {
 
 .spinner {
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 650px;
+    height: 650px;
     border-radius: 45%;
     overflow: hidden;
     margin: 0 auto; /* Add margin: 0 auto to center the spinner horizontally */
