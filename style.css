@@ -1,0 +1,51 @@
+body {
+    background-color: aquamarine;
+}
+
+.spinner {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: blue;
+    overflow: hidden;
+    margin: 0 auto; /* Add margin: 0 auto to center the spinner horizontally */
+    margin-bottom: 20px;
+  }
+  
+  .meal-details {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .meal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  #mealName {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  #mealRecipe {
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  
+  
+  
+  
+  
