@@ -23,6 +23,7 @@ function spinSpinner() {
   let currentIndex = 0;
   const maxIndex = meals.length - 1;
   let interval;
+  let instructionsIndex = 0; // Index to keep track of displayed instructions
 
   const spinInterval = 100; // Interval in milliseconds
   const spinDuration = 8000; // Duration in milliseconds
@@ -46,7 +47,6 @@ function spinSpinner() {
     };
 
     mealName.textContent = selectedMeal.strMeal;
-    mealRecipe.textContent = selectedMeal.strInstructions;
 
     currentIndex++;
     if (currentIndex > maxIndex) {
@@ -65,17 +65,42 @@ function spinSpinner() {
 
     mealImage.src = selectedMeal.strMealThumb;
     mealName.textContent = selectedMeal.strMeal;
-    mealRecipe.textContent = selectedMeal.strInstructions;
+
+    // Initially hide the instructions
+    mealRecipe.style.display = 'none';
 
     randomButton.disabled = false;
+
+    // Split the instructions into an array of steps
+    const instructionsArray = selectedMeal.strInstructions.split('\n').filter(step => step.trim() !== '');
+    
+    // Display the instructions step by step
+    if (instructionsIndex < instructionsArray.length) {
+      mealRecipe.textContent = instructionsArray[instructionsIndex];
+      mealRecipe.style.display = 'block';
+
+      // Increment the instructionsIndex for the next step
+      instructionsIndex++;
+    }
   }, spinDuration);
+
+  // Continue displaying instructions step by step
+  setInterval(() => {
+    if (instructionsIndex < instructionsArray.length) {
+      mealRecipe.textContent = instructionsArray[instructionsIndex];
+      mealRecipe.style.display = 'block';
+
+      // Increment the instructionsIndex for the next step
+      instructionsIndex++;
+    }
+  }, 3000); // Adjust the interval as needed
 }
 
 randomButton.addEventListener('click', spinSpinner);
 
-
 // Fetch meals from the API when the page loads
 fetchMeals();
+
 
 
 

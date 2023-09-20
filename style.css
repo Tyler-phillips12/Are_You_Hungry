@@ -1,16 +1,16 @@
 body {
-    background-color: aquamarine;
+    background-color: yellow;
 }
 
 .spinner {
     position: relative;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background-color: blue;
+    width: 500px;
+    height: 500px;
+    border-radius: 45%;
     overflow: hidden;
     margin: 0 auto; /* Add margin: 0 auto to center the spinner horizontally */
     margin-bottom: 20px;
+    box-shadow: 0 0 10px red, 0 0 20px orange;
   }
   
   .meal-details {
@@ -22,6 +22,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    box-shadow: 0 0 10px red, 0 0 20px orange;
   }
   
   .meal-image {
@@ -30,6 +31,7 @@ body {
     object-fit: cover;
     display: block;
     margin: 0 auto;
+    box-shadow: 0 0 10px red, 0 0 20px orange;
   }
   
   #mealName {
@@ -37,11 +39,19 @@ body {
     font-weight: bold;
     text-align: center;
     margin-bottom: 10px;
+    color: red;
+    box-shadow: 0 0 10px red, 0 0 20px orange;
+    margin-bottom: 40px;
   }
   
   #mealRecipe {
     font-size: 14px;
     text-align: center;
+    color: red;
+    border: solid 1px red;
+    box-shadow: 0 0 10px red, 0 0 20px orange;
+    margin-top: 40px;
+    font-weight: 900;
   }
   
   
