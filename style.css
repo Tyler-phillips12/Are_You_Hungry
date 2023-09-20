@@ -35,7 +35,7 @@ body {
   }
   
   #mealName {
-    font-size: 20px;
+    font-size: 100px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 10px;
@@ -43,15 +43,27 @@ body {
     box-shadow: 0 0 10px red, 0 0 20px orange;
     margin-bottom: 40px;
   }
+
+  .centered-button {
+    display: block;
+    margin: 0 auto; /* Center horizontally */
+    padding: 30px 50px; /* Add padding for button size */
+    font-size: 28px; /* Increase font size for bigger button */
+  }
   
-  #mealRecipe {
-    font-size: 14px;
+  #mealRecipe  {
+    font-size: 30px; 
     text-align: center;
     color: red;
     border: solid 1px red;
     box-shadow: 0 0 10px red, 0 0 20px orange;
     margin-top: 40px;
     font-weight: 900;
+  }
+
+  button {
+    max-height: 100px;
+    max-width: 200px;
   }
   
   
