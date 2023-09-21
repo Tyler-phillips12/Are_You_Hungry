@@ -4,13 +4,16 @@ const mealName = document.getElementById('mealName');
 const mealRecipe = document.getElementById('mealRecipe');
 const randomButton = document.getElementById('randomButton');
 
-let meals = [];
+let recipes = [];
 
-function fetchMeals() {
-  fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+function fetchRecipes() {
+  const apiKey = 'YOUR_API_KEY'; // Replace 'YOUR_API_KEY' with your Spoonacular API key
+  const numberOfRecipes = 100; // You can adjust the number of recipes you want to fetch
+
+  fetch(`https://api.spoonacular.com/recipes/random?apiKey=8d241ad6e0524291bb07e903cffd0941&number=${numberOfRecipes}`)
     .then(response => response.json())
     .then(data => {
-      meals = data.meals || [];
+      recipes = data.recipes || [];
     })
     .catch(error => {
       console.error('Error:', error);
@@ -21,86 +24,66 @@ function spinSpinner() {
   randomButton.disabled = true;
 
   let currentIndex = 0;
-  const maxIndex = meals.length - 1;
+  const maxIndex = recipes.length - 1;
   let interval;
-  let instructionsIndex = 0; // Index to keep track of displayed instructions
 
   const spinInterval = 100; // Interval in milliseconds
   const spinDuration = 8000; // Duration in milliseconds
 
   function spin() {
-    const selectedMeal = meals[currentIndex];
+    const selectedRecipe = recipes[currentIndex];
 
-    mealImage.src = selectedMeal.strMealThumb;
-    mealImage.onload = function () {
-      const imageWidth = this.width;
-      const imageHeight = this.height;
-      const spinnerWidth = spinner.offsetWidth;
-      const spinnerHeight = spinner.offsetHeight;
+    // Set a fixed height for the meal image
+    const windowHeight = window.innerHeight;
+    const mealImageHeight = windowHeight / 2; // Adjust as needed
+    mealImage.style.height = `${mealImageHeight}px`;
 
-      const scale = Math.min(spinnerWidth / imageWidth, spinnerHeight / imageHeight);
-      const scaledWidth = imageWidth * scale;
-      const scaledHeight = imageHeight * scale;
+    // Calculate the width to maintain aspect ratio
+    const imageAspectRatio = selectedRecipe.imageWidth / selectedRecipe.imageHeight;
+    const mealImageWidth = mealImageHeight * imageAspectRatio;
+    mealImage.style.width = `${mealImageWidth}px`;
 
-      mealImage.style.width = `${scaledWidth}px`;
-      mealImage.style.height = `${scaledHeight}px`;
-    };
+    mealImage.src = selectedRecipe.image;
+    mealName.textContent = selectedRecipe.title;
 
-    mealName.textContent = selectedMeal.strMeal;
+    mealRecipe.innerHTML = `
+      <p>${selectedRecipe.instructions.split('\n').filter(step => step.trim() !== '').map(step => `<li>${step}</li>`).join('')}</p>
+    `;
 
     currentIndex++;
     if (currentIndex > maxIndex) {
       currentIndex = 0;
     }
+
+    mealRecipe.style.display = 'none';
   }
 
   // Start spinning animation
   interval = setInterval(spin, spinInterval);
 
-  // Stop spinning after specified duration
+  // Stop spinning after the specified duration
   setTimeout(() => {
     clearInterval(interval);
-    const randomIndex = Math.floor(Math.random() * meals.length);
-    const selectedMeal = meals[randomIndex];
+    const randomIndex = Math.floor(Math.random() * recipes.length);
+    const selectedRecipe = recipes[randomIndex];
 
-    mealImage.src = selectedMeal.strMealThumb;
-    mealName.textContent = selectedMeal.strMeal;
+    // Reset image size
+    mealImage.style.height = ''; // Clear height
+    mealImage.style.width = ''; // Clear width
 
-    // Initially hide the instructions
-    mealRecipe.style.display = 'none';
+    mealImage.src = selectedRecipe.image;
+    mealName.textContent = selectedRecipe.title;
+
+    mealRecipe.style.display = 'block';
 
     randomButton.disabled = false;
-
-    // Split the instructions into an array of steps
-    const instructionsArray = selectedMeal.strInstructions.split('\n').filter(step => step.trim() !== '');
-    
-    // Display the instructions step by step
-    if (instructionsIndex < instructionsArray.length) {
-      mealRecipe.textContent = instructionsArray[instructionsIndex];
-      mealRecipe.style.display = 'block';
-
-      // Increment the instructionsIndex for the next step
-      instructionsIndex++;
-    }
   }, spinDuration);
-
-  // Continue displaying instructions step by step
-  setInterval(() => {
-    if (instructionsIndex < instructionsArray.length) {
-      mealRecipe.textContent = instructionsArray[instructionsIndex];
-      mealRecipe.style.display = 'block';
-
-      // Increment the instructionsIndex for the next step
-      instructionsIndex++;
-    }
-  }, 3000); // Adjust the interval as needed
 }
 
 randomButton.addEventListener('click', spinSpinner);
 
-// Fetch meals from the API when the page loads
-fetchMeals();
-
+// Fetch recipes from the Spoonacular API when the page loads
+fetchRecipes();
 
 
 
