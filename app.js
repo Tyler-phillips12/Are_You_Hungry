@@ -45,9 +45,7 @@ function spinSpinner() {
     mealImage.src = selectedRecipe.image;
     mealName.textContent = selectedRecipe.title;
 
-    mealRecipe.innerHTML = `
-      <p>${selectedRecipe.instructions.split('\n').filter(step => step.trim() !== '').map(step => `<li>${step}</li>`).join('')}</p>
-    `;
+    mealRecipe.innerHTML = `<p>${selectedRecipe.instructions || 'No instructions available.'}</p>`;
 
     currentIndex++;
     if (currentIndex > maxIndex) {
@@ -72,6 +70,8 @@ function spinSpinner() {
 
     mealImage.src = selectedRecipe.image;
     mealName.textContent = selectedRecipe.title;
+
+    mealRecipe.innerHTML = `<p>${selectedRecipe.instructions || 'No instructions available.'}</p>`;
 
     mealRecipe.style.display = 'block';
 
