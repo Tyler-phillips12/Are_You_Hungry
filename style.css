@@ -2,6 +2,13 @@ body {
     background-color: yellow;
 }
 
+p {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  font-weight: 900;
+  color: red;
+}
+
 .spinner {
     position: relative;
     width: 510px;
