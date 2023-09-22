@@ -7,7 +7,7 @@ const randomButton = document.getElementById('randomButton');
 let recipes = [];
 
 function fetchRecipes() {
-  const numberOfRecipes = 1000; // You can adjust the number of recipes you want to fetch
+  const numberOfRecipes = 360000; // You can adjust the number of recipes you want to fetch
 
   fetch(`https://api.spoonacular.com/recipes/random?apiKey=8d241ad6e0524291bb07e903cffd0941&number=${numberOfRecipes}`)
     .then(response => response.json())
