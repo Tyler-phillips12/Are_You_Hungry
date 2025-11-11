@@ -1,111 +1,138 @@
 body {
-  background-color: #f4dd56; /* Your chosen yellow color */
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
   margin: 0;
-  font-family: 'Courier New', Courier, monospace;
 }
 
-p {
-  font-size: 30px;
-  font-weight: 900;
-  color: red;
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.filters label {
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.filters select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.filters select:hover {
+  border-color: #6c63ff;
+  background-color: #fff;
+}
+
+#randomButton {
+  background: #6c63ff;
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+#randomButton:hover {
+  background: #5a53e0;
+  transform: scale(1.05);
+}
+
+#randomButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .spinner {
-  position: relative;
-  width: 100%;
-  max-width: 510px; /* Adjust as needed */
-  height: 345px;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7); /* Red and orange box shadows */
+  display: none;
+  margin: 20px auto;
+  border: 6px solid #eee;
+  border-top: 6px solid #6c63ff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }
 
-.meal-details {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7); /* Red and orange box shadows */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.meal-image {
+.recipe-display {
+  text-align: center;
+  max-width: 800px;
+  margin-top: 2rem;
+}
+
+#mealImage {
   width: 100%;
-  height: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
   object-fit: cover;
-  display: block;
-  margin: 0 auto;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7); /* Red and orange box shadows */
 }
 
 #mealName {
-  font-size: 60px; /* Adjust as needed */
-  font-weight: bold;
-  text-align: center;
-  margin: 20px 0;
-  color: red;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7); /* Red and orange box shadows */
-}
-
-.centered-button {
-  display: block;
-  margin: 0 auto;
-  padding: 20px 40px; /* Adjust for button size */
-  font-size: 24px; /* Increase font size for a bigger button */
-  background-color: red; /* Your chosen red color */
-  color: white; /* White text color */
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7); /* Red and orange box shadows */
-}
-
-.centered-button:hover {
-  background-color: darkred; /* Change color on hover */
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
 }
 
 #mealRecipe {
-  font-size: 24px; /* Adjust as needed */
-  text-align: center;
-  color: red;
-  border: solid 1px red;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7); /* Red and orange box shadows */
-  margin: 20px 0;
-  font-weight: 900;
-}
-#mealRecipe p {
-  font-size: 24px;
-  text-align: center;
-  color: red;
-  border: solid 1px red;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
-  margin: 20px 0;
-  font-weight: 900;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-#mealRecipe p li {
-  list-style-type: disc; /* Use 'disc' or 'decimal' based on your preference */
-  padding-left: 20px; /* Adjust the padding as needed */
+#mealRecipe h2 {
+  color: #6c63ff;
+  margin-top: 1rem;
 }
 
-button {
-  max-height: 100px;
-  max-width: 200px;
-  font-size: 24px; /* Adjust as needed */
-  color: red;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: rgba(255, 0, 0, 0.7); /* Red background color with transparency */
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7); /* Red and orange box shadows */
+#mealRecipe ul {
+  margin-left: 1.2rem;
 }
 
-button:hover {
-  background-color: rgba(255, 0, 0, 0.9); /* Change color on hover with more opacity */
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #randomButton {
+    width: 100%;
+  }
 }
-  
   
   
   

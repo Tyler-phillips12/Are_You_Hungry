@@ -13,7 +13,38 @@
     </div>
   </div>
   <div id="mealRecipe"></div>
-  <button id="randomButton" class="centered-button">Spin</button>
+  <div class="filters">
+  <label for="mealType">Meal Type:</label>
+  <select id="mealType">
+    <option value="Breakfast">Breakfast</option>
+    <option value="Lunch">Lunch</option>
+    <option value="Dinner">Dinner</option>
+  </select>
+
+  <label for="meatType">Meat:</label>
+  <select id="meatType">
+    <option value="None">None</option>
+    <option value="Chicken">Chicken</option>
+    <option value="Beef">Beef</option>
+    <option value="Pork">Pork</option>
+    <option value="Fish">Fish</option>
+    <option value="Turkey">Turkey</option>
+    <option value="Lamb">Lamb</option>
+  </select>
+
+  <label for="vegType">Vegetable:</label>
+  <select id="vegType">
+    <option value="None">None</option>
+    <option value="Broccoli">Broccoli</option>
+    <option value="Carrot">Carrot</option>
+    <option value="Spinach">Spinach</option>
+    <option value="Tomato">Tomato</option>
+    <option value="Potato">Potato</option>
+    <option value="Peas">Peas</option>
+  </select>
+</div>
+
+<button id="randomButton">Get Random Recipe</button>
 
   <!-- Modal Container -->
   <div id="mealModal" class="modal">
